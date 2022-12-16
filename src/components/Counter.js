@@ -22,6 +22,11 @@ export class Counter extends React.Component {
         }, this.props.milSeconds);
     }
 
+    componentDidUpdate() {
+        if (this.state.count > 10 * this.props.initialValue)
+            this.setState({count: this.props.initialValue});
+    }
+
     componentWillUnmount() {
         clearInterval(this._interval);
     }
