@@ -16,7 +16,9 @@ export class Counter extends React.Component {
         setInterval(() => {
             this.setState(state => {
                 return {
-                    count: state.count + this.props.incrementBy
+                    count: state.count > 10 * this.props.initialValue
+                            ? this.props.initialValue
+                            : state.count + this.props.incrementBy
                 }
             });
         }, this.props.milSeconds);
