@@ -1,25 +1,17 @@
-import React from "react";
+import { useCounter } from "./CounterHook";
 
-export class Counter extends React.Component {
+export const Counter = ({initialValue}) => {
 
-    state = {
-        count: 0
-    };
-    
-    constructor(props) {
-        super(props);
-        
+    const {count, onIncrement, onDecrement, onReset} = useCounter(initialValue);
 
-        setInterval(() => {
-            this.setState(state => {
-                return {
-                    count: state.count + 1
-                }
-            });
-        }, 1000);
-    }
-
-    render() {
-        return <h1>Count: {this.state.count}</h1>
-    }
+    return (
+        <div>
+            <h1>Count: {count}</h1>
+            <button onClick={onIncrement}>Add</button>
+            <button onClick={onDecrement}>Subtract</button>
+            <button onClick={onReset}>Reset</button>
+        </div>
+    );
 }
+
+export default Counter;
